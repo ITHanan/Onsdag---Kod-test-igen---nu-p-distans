@@ -1,7 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Onsdag___Kod_test_igen___nu_på_distans
+﻿namespace Onsdag___Kod_test_igen___nu_på_distans
 {
     internal class Program
     {
@@ -17,48 +14,60 @@ namespace Onsdag___Kod_test_igen___nu_på_distans
         }
 
 
-      
-           public static int MestFrekventSiffra(int[] number)
+
+        public static int MestFrekventSiffra(int[] number)
+        {
+
+            if (number.Length == 0)
+            {
+                Console.WriteLine("Output: 0 (Arrayen är tom)");
+                return 0;
+            }
+              
+
+            Dictionary<int, int> frequency = new Dictionary<int, int>();
+
+
+            foreach (int num in number) 
             {
 
-                if (number.Length == 0)
-                {
-                    Console.WriteLine("Output: 0 (Arrayen är tom)");
-                    return 0;
+                if (frequency.ContainsKey(num))
+                { 
+                frequency[num]++;
+
+
                 }
-
-
+                else{
+                
+                 frequency[num] = 1;
+               
+                }
+            
+            
+            }
             int mostFrequent = number[0];
-            int maxcount = 1;
-            for (int i = 0; i < number.Length; i++)
-            {
-                int count = 0;
+            int maxcount = 0;
 
-                for (int j = 0; j < number.Length; j++)
+
+
+          foreach (var highestnum in frequency)
+            { 
+
+                if (highestnum.Value > maxcount || (highestnum.Value == maxcount && highestnum.Key < mostFrequent))
                 {
-                    if (number[i] == number[j])
-                    {
-                        count++;
-                    }
-                }
-
-
-                if (count > maxcount || (count == maxcount && number[i] < mostFrequent))
-                {
-                    maxcount = count;
-                    mostFrequent = number[i];
+                    mostFrequent = highestnum.Key;
+                    maxcount = highestnum.Value;
                 }
 
             }
             Console.WriteLine($"Input: [{string.Join(", ", number)}]");
-            Console.WriteLine($" number {mostFrequent}  occurs {maxcount} timse  , which is the most");
+            Console.WriteLine($" number {mostFrequent} occurs {maxcount} timse  , which is the most");
             return mostFrequent;
 
-           }
+        }
 
-        
-               
+
+
     }
-            
+
 }
-  
