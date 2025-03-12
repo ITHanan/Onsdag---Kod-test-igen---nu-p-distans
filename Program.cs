@@ -1,4 +1,7 @@
-﻿namespace Onsdag___Kod_test_igen___nu_på_distans
+﻿using System.Runtime.InteropServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Onsdag___Kod_test_igen___nu_på_distans
 {
     internal class Program
     {
@@ -10,7 +13,12 @@
             Console.WriteLine(MestFrekventSiffra(new int[] { 7, 7, 5, 5, 1, 1, 1, 2, 2, 2 })); // 1
 
 
-            static int MestFrekventSiffra(int[] number)
+
+        }
+
+
+      
+           public static int MestFrekventSiffra(int[] number)
             {
 
                 if (number.Length == 0)
@@ -20,44 +28,37 @@
                 }
 
 
-                int mostFrequent = number[0];
-                int maxcount = 0;
+            int mostFrequent = number[0];
+            int maxcount = 1;
+            for (int i = 0; i < number.Length; i++)
+            {
+                int count = 0;
 
-
-                for (int i = 0; i < number.Length; i++)
+                for (int j = 0; j < number.Length; j++)
                 {
-                    int count = 0; 
-
-                    for (int j = 0; j < number.Length; j++)
+                    if (number[i] == number[j])
                     {
-                        if (number[i] == number[j])// if it true that means that we have a dublicated number 
-                        {
-                            count++;
-                        }
-
+                        count++;
                     }
-
-                    if (count > maxcount || (count == maxcount && number[i] < mostFrequent)) 
-                    {
-
-                        maxcount = count;
-                        mostFrequent = number[i];
-
-                       
-
-                    }
-
-                   
                 }
 
 
-                Console.WriteLine($"Input: [{string.Join(", ", number)}]");
-                Console.WriteLine($"{mostFrequent} number {mostFrequent} occurs {maxcount} timse, which is the most");
-                return mostFrequent;
-            }
-            
-          
+                if (count > maxcount || (count == maxcount && number[i] < mostFrequent))
+                {
+                    maxcount = count;
+                    mostFrequent = number[i];
+                }
 
-        }
+            }
+            Console.WriteLine($"Input: [{string.Join(", ", number)}]");
+            Console.WriteLine($" number {mostFrequent}  occurs {maxcount} timse  , which is the most");
+            return mostFrequent;
+
+           }
+
+        
+               
     }
+            
 }
+  
